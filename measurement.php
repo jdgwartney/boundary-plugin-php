@@ -59,6 +59,7 @@ if(isset($options['m'])) {
 if(isset($options['s'])) {
   $source = $options['s'];
 } else {
+  # Default to the localhost we are running on
   $source = gethostname();
 }
 if(isset($options['t'])) {
