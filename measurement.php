@@ -12,7 +12,7 @@ function CreateMeasurement($user,$password,$data)
 
     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     curl_setopt($curl, CURLOPT_USERPWD,$user . ':' . $password);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
     curl_setopt($curl, CURLOPT_URL,'https://premium-api.boundary.com/v1/measurements');
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -70,7 +70,6 @@ if(isset($options['t'])) {
 if (isset($email) && isset($metric_id) && isset($measurement) && isset($source) && isset($api_token)) {
   # Post the data to Boundary
   $data = json_encode(array('source' => $source, 'metric' => $metric_id , 'measure' => $measurement));
-  echo $data;
   $result = CreateMeasurement($email,$api_token,$data);
   echo $result;
 } else {
