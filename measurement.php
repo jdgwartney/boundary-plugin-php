@@ -16,6 +16,7 @@ function CreateMeasurement($user,$password,$data)
 
     curl_setopt($curl, CURLOPT_URL,'https://premium-api.boundary.com/v1/measurements');
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_VERBOSE, true);
 
     $result = curl_exec($curl);
 
@@ -70,6 +71,8 @@ if(isset($options['t'])) {
 if (isset($email) && isset($metric_id) && isset($measurement) && isset($source) && isset($api_token)) {
   # Post the data to Boundary
   $data = json_encode(array('source' => $source, 'metric' => $metric_id , 'measure' => $measurement));
+#  $data = '{"source":"lerma","metric":"BOUNDARY_MEASUREMENT_TEST","measure": 10000}';
+#  echo "$data\n";
   $result = CreateMeasurement($email,$api_token,$data);
   echo $result;
 } else {
